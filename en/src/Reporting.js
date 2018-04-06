@@ -8,9 +8,9 @@ function sessionstart()
 {
   var JsonArray =
   {
-  "app_name": "AstRoamer_Element_Hunt_Activity",
+  "appName": "AstRoamer_Element_Hunt_Activity",
 
-  "params":
+  "appData":
   {
     "event_type": "game_start",
    "language" : language1
@@ -115,7 +115,7 @@ class GameReporter
 	submitData(url, data) {
 		var user_id = this.getCookie('user_id')
 		var data_string = {}
-		data_string['user_id'] = this.getCookie('user_id');
+		data_string['userId'] = this.getCookie('user_id');
 		var date = new Date();
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
@@ -125,7 +125,7 @@ class GameReporter
     sessionid = this.getCookie('sessionid');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 		data_string['createdAt'] = timestamp
-    data_string['buddyIDs'] = buddy_details
+    data_string['buddyIds'] = buddy_details
     data_string['sessionid'] = sessionid
     data_string['appName'] = "AstRoamer_Element_Hunt_Activity"
     data_string['language'] = language1

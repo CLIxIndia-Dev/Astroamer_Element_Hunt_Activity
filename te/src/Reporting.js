@@ -8,10 +8,11 @@ function sessionstart()
 {
   var JsonArray =
   {
-  "app_name": "AstRoamer_Element_Hunt_Activity",
-  "event_type": "game_start",
-  "params":
+  "appName": "AstRoamer_Element_Hunt_Activity",
+
+  "appData":
   {
+    "event_type": "game_start",
    "language" : language1
   }
 
@@ -20,19 +21,17 @@ function sessionstart()
   saveDataOnExit(JsonArray);
   console.log(JsonArray);
 }
-
-
-
-
- function doQuit(count_no_of_attempts)
+function doQuit(score)
  {
 JsonArray2 =
 {
 "app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "session_end",
+
 "params":
 {
-  "No of attempts" : count_no_of_attempts,
+  "event_type": "session_end",
+  "Final score" : score,
+
   "language" : language1
 }
 }
@@ -44,13 +43,15 @@ saveDataOnExit(JsonArray2);
 console.log(JsonArray2);
 
 }
+
 function clueEnd(cluenumber,numberofattempts,degrees_of_position1,degrees_of_position2){
 var JsonArray =
 {
 "app_name": "AstRoamer_Element_Hunt_Activity",
-"event_type": "clue_end",
+
 "params":
 {
+  "event_type": "clue_end",
 "Currentclue": cluenumber,
 "NumberofAttempts" : numberofattempts,
 "FirstAttemptAnswer" : degrees_of_position1,
@@ -63,6 +64,7 @@ var JsonArray =
 saveDataOnExit(JsonArray);
 console.log(JsonArray);
 }
+
 // function doQuit(){
 // var JsonArray =
 // {
@@ -113,7 +115,7 @@ class GameReporter
 	submitData(url, data) {
 		var user_id = this.getCookie('user_id')
 		var data_string = {}
-		data_string['user_id'] = this.getCookie('user_id');
+		data_string['userId'] = this.getCookie('user_id');
 		var date = new Date();
 		var csrftoken;
 		csrftoken = this.getCookie('csrftoken');
@@ -122,19 +124,23 @@ class GameReporter
     var sessionid;
     sessionid = this.getCookie('sessionid');
     	var timestamp = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +  date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-		data_string['created_at'] = timestamp
-    data_string['buddy_details'] = buddy_details
+		data_string['createdAt'] = timestamp
+    data_string['buddyIds'] = buddy_details
     data_string['sessionid'] = sessionid
+    data_string['appName'] = "AstRoamer_Element_Hunt_Activity"
+    data_string['language'] = language1
+    data_string['appData']
 		for (var key in data) {data_string[key] = data[key];};
 		data_string = JSON.stringify(data_string);
 	//alert(data_string)
 		$.ajax({
                   type: "POST",
                   data:{
-                        "user_data":data_string,
-                        "app_name":"AstRoamer_Element_Hunt_Activity",
-                        //"buddy_details": buddy_details,
+                        "payload":data_string,
+                        "appName":"AstRoamer_Element_Hunt_Activity",
+                        //"buddy_details": buddy_details,5
                         'csrfmiddlewaretoken':csrftoken,
+
                     },
                   url: "/tools/logging",
                   datatype: "json",
