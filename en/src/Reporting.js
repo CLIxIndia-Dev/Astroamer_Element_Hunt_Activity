@@ -25,9 +25,9 @@ function doQuit(score)
  {
 JsonArray2 =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
+"appName": "AstRoamer_Element_Hunt_Activity",
 
-"params":
+"appData":
 {
   "event_type": "session_end",
   "Final score" : score,
@@ -47,9 +47,9 @@ console.log(JsonArray2);
 function clueEnd(cluenumber,numberofattempts,degrees_of_position1,degrees_of_position2){
 var JsonArray =
 {
-"app_name": "AstRoamer_Element_Hunt_Activity",
+"appName": "AstRoamer_Element_Hunt_Activity",
 
-"params":
+"appData":
 {
   "event_type": "clue_end",
 "Currentclue": cluenumber,
